@@ -8,7 +8,19 @@ import java.util.Arrays;
  */
 public class LexAnays {
 
+    public static final String Identifier = "identifier";
+    public static final String Comment = "comment";
+    public static final String Separator = "separator";
+    public static final String Int = "Integer";
+    public static final String Flo = "Float";
+    public static final String Doub = "Double";
+    public static final String Oper = "Operator";
+    public static final String ClassName = "ClassName";
+    public static final String OParent = "Opening Parenthesis";
+    public static final String CParent = "Closing Parenthesis";
+
     public static int LineNumber = 1;
+    public static String Assignment = "Assignment";
     public int[][] transition;
     public char[] lexeme, ul;
     public char[] buff;
@@ -135,6 +147,55 @@ public class LexAnays {
         return checkAutomate("Operator", finals);
     }
 
+    public boolean isOpeningParenth() {
+        init();
+        int[] finals = {1};
+        transition[0]['('] = 1;
+        return checkAutomate(OParent, finals);
+    }
+
+    public boolean isClosingParenth() {
+        init();
+        int[] finals = {1};
+        transition[0][')'] = 1;
+        return checkAutomate(CParent, finals);
+    }
+
+    public boolean isOpening() {
+        init();
+        int[] finals = {1};
+        transition[0]['{'] = 1;
+        return checkAutomate("Op", finals);
+    }
+
+    public boolean isClosing() {
+        init();
+        int[] finals = {1};
+        transition[0]['}'] = 1;
+        return checkAutomate("Cp", finals);
+    }
+
+    public boolean isOpeningBracket() {
+        init();
+        int[] finals = {1};
+        transition[0]['['] = 1;
+        return checkAutomate("Obracket", finals);
+    }
+
+    public boolean isClosingBracket() {
+        init();
+        int[] finals = {1};
+        transition[0][']'] = 1;
+        return checkAutomate("Cbracket", finals);
+    }
+
+    public boolean isAssigment() {
+        init();
+        int[] finals = {1};
+        transition[0]['='] = 1;
+        return checkAutomate(Assignment, finals);
+    }
+
     /**
      * testing if the given token is a white space
      *
@@ -164,7 +225,7 @@ public class LexAnays {
         for (int i = 'a'; i <= 'z'; i++)
             transition[0][i] = transition[1][i] = 1;
         transition[0]['_'] = transition[1]['_'] = 1;
-        return checkAutomate("Identifier", finals);
+        return checkAutomate(Identifier, finals);
     }
 
     /**
@@ -201,15 +262,30 @@ public class LexAnays {
      * @return
      */
     public boolean lex() {
-        if (isIdentifier() || isComment() || isOperator() || isFloat() || isInteger() || isSeparator()) {
+        if (isClassName() || isAssigment() || isOpeningParenth()
+                || isClosingParenth() || isIdentifier() || isComment()
+                || isOperator() || isFloat() || isInteger() || isSeparator()) {
             System.out.println(new String(lexeme) + " " + new String(ul));
             return true;
         }
         if (isSpace()) {
             return lex();
         }
-        System.out.println("lexical error !!");
+        System.out.println("lexical error at line number => " + LineNumber);
         return false;
     }
 
+    public boolean isClassName() {
+        init();
+        int[] finals = {1, 2};
+        for (int i = 'A'; i <= 'Z'; i++) {
+            transition[0][i] = 1;
+            transition[1][i] = 2;
+        }
+        for (int i = 'a'; i <= 'z'; i++) {
+            transition[1][i] = 2;
+            transition[2][i] = 2;
+        }
+        return checkAutomate(ClassName, finals);
+    }
 }
