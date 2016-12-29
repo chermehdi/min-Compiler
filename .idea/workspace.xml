@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d573b82f-121f-4eaa-88f7-6ae1ab6f42e1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Compilation project/componenets/LexAnays.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Compilation project/main/Main.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -604,7 +602,7 @@
       <option name="presentableId" value="Default" />
       <updated>1482872954988</updated>
       <workItem from="1482872959230" duration="5930000" />
-      <workItem from="1483016456535" duration="825000" />
+      <workItem from="1483016456535" duration="955000" />
     </task>
     <task id="LOCAL-00001" summary="first commit to the project">
       <created>1483016695199</created>
@@ -617,7 +615,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6755000" />
+    <option name="totallyTimeSpent" value="6885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="267" y="80" width="1472" height="1000" extended-state="0" />
